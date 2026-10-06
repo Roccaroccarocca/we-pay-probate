@@ -1,0 +1,27 @@
+{
+  "name": "we-pay-probate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev --host 0.0.0.0",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 0.0.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roccaroccarocca/we-pay-probate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Roccaroccarocca/we-pay-probate/issues"
+  },
+  "homepage": "https://github.com/Roccaroccarocca/we-pay-probate#readme",
+  "private": true,
+  "dependencies": {
+    "astro": "^7.3.6"
+  }
+}
