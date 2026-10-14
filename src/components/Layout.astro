@@ -1,62 +1,185 @@
 ---
-import { site } from '../site';
-import '../styles/global.css';
-const { title, description } = Astro.props;
+import { site } from "../site";
+import Icon from "./Icon.astro";
+import "../styles/global.css";
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+const { title, description, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.productionUrl).href;
+const shareImage = new URL("/og-image.png", site.productionUrl).href;
 const schema = {
-  '@context': 'https://schema.org', '@type': 'Organization',
-  name: site.name, url: site.productionUrl, telephone: '+19543206336',
-  description: 'Probate-related property assistance and direct home purchases in South Florida.',
-  areaServed: site.counties.map(name => ({ '@type': 'AdministrativeArea', name: `${name} County, Florida` })),
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  url: site.productionUrl,
+  telephone: "+19543206336",
+  description:
+    "Probate-related property assistance and direct, as-is home purchases in South Florida.",
+  areaServed: site.counties.map((name) => ({
+    "@type": "AdministrativeArea",
+    name: name + " County, Florida",
+  })),
 };
 const analyticsEnabled = /^G-[A-Z0-9]+$/.test(site.gaId);
+const analyticsSetup = [
+  "window.dataLayer = window.dataLayer || [];",
+  "window.gtag = function(){ window.dataLayer.push(arguments); };",
+  "window.gtag('js', new Date());",
+  "window.gtag('config', " + JSON.stringify(site.gaId) + ");",
+].join("\n");
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content={site.indexable ? 'index, follow' : 'noindex, follow'} />
+    <meta
+      name="robots"
+      content={site.indexable && !noindex ? "index, follow" : "noindex, follow"}
+    />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="preload"
+      href="/fonts/dm-sans-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/dm-serif-display-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={site.name} />
-    <meta name="theme-color" content="#183e3b" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="We Pay Probate — a clearer path forward for your inherited South Florida home."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImage} />
+    <meta name="theme-color" content="#0e5082" />
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    {analyticsEnabled && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`}></script>}
-    {analyticsEnabled && <script is:inline define:vars={{ gaId: site.gaId }}>
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function(){ window.dataLayer.push(arguments); };
-      window.gtag('js', new Date());
-      window.gtag('config', gaId);
-    </script>}
+    {
+      analyticsEnabled && (
+        <script
+          is:inline
+          async
+          src={"https://www.googletagmanager.com/gtag/js?id=" + site.gaId}
+        />
+      )
+    }
+    {analyticsEnabled && <script is:inline set:html={analyticsSetup} />}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <header class="header wrap">
-      <a class="brand" href="/" aria-label="We Pay Probate home"><span class="brand-mark">W<span>•</span></span><span>WE PAY<br /><strong>PROBATE</strong></span></a>
-      <nav aria-label="Main navigation"><a href="/#how-it-works">How it works</a><a href="/#your-options">Your property</a><a href="/#questions">Questions</a></nav>
-      <a class="header-call" href={site.phoneHref} data-call-location="header"><span>Let’s talk</span> {site.phone} ↗</a>
+      <a class="brand" href="/" aria-label="We Pay Probate home"
+        ><span class="brand-symbol"><Icon name="home" size={25} /></span><span
+          >WE PAY<strong>PROBATE<span class="brand-dot">.</span></strong></span
+        ></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="/#your-options">How we help</a><a href="/#how-it-works"
+          >The process</a
+        ><a href="/#questions">FAQs</a>
+      </nav>
+      <a class="header-call" href={site.phoneHref} data-call-location="header"
+        ><Icon name="phone" size={18} /><span
+          ><small>LET’S TALK</small>{site.phone}</span
+        ></a
+      >
     </header>
     <slot />
-    <footer class="footer"><div class="wrap"><div class="footer-top"><a class="brand" href="/">WE PAY PROBATE<span class="brand-dot">•</span></a><p>A clearer path forward for your inherited property.</p><a href={site.phoneHref} data-call-location="footer">{site.phone} ↗</a></div><div class="footer-bottom"><p>Serving Miami-Dade, Broward & Palm Beach Counties, Florida.</p><a href="/privacy/">Privacy & call tracking</a></div><p class="legal">We Pay Probate purchases real estate. This website provides general information, not legal advice. Probate requirements and authority to sell depend on the estate. Consult a qualified Florida probate attorney. Any payment of fees, property offer, or closing timeline is subject to review and written agreement.</p><p class="legal">© {new Date().getFullYear()} We Pay Probate.</p></div></footer>
-    <a class="mobile-call" href={site.phoneHref} data-call-location="mobile-sticky">Call for a free consultation <span>↗</span></a>
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footer-top">
+          <div>
+            <a class="brand" href="/" aria-label="We Pay Probate home"
+              ><span class="brand-symbol"><Icon name="home" size={25} /></span
+              ><span
+                >WE PAY<strong>PROBATE<span class="brand-dot">.</span></strong
+                ></span
+              ></a
+            ><p>A clearer path for your inherited home.</p>
+          </div><div class="footer-service">
+            <span class="eyebrow">HERE IN SOUTH FLORIDA</span><p>
+              Miami-Dade · Broward · Palm Beach
+            </p>
+          </div><a
+            class="footer-phone"
+            href={site.phoneHref}
+            data-call-location="footer"
+            >{site.phone}<Icon name="arrow" size={20} /></a
+          >
+        </div><div class="footer-bottom">
+          <p>© {new Date().getFullYear()} {site.name}</p><a href="/privacy/"
+            >Privacy & call tracking</a
+          ><a href="/#questions">Questions? Start here.</a>
+        </div><p class="legal">
+          We Pay Probate purchases real estate. This website provides general
+          information, not legal advice. Probate requirements and authority to
+          sell depend on the estate. Consult a qualified Florida probate
+          attorney. Any fee coverage, purchase rights, or closing terms are
+          subject to review and written agreement.
+        </p>
+      </div>
+    </footer>
+    <a
+      class="mobile-call"
+      href={site.phoneHref}
+      data-call-location="mobile-sticky"
+      ><Icon name="phone" size={21} /><span
+        >Free initial consultation<strong>{site.phone}</strong></span
+      ><Icon name="arrow" size={22} /></a
+    >
     <script>
-      document.querySelectorAll<HTMLAnchorElement>('a[data-call-location]').forEach(link => {
-        link.addEventListener('click', () => {
-          const event = { event: 'click_to_call', call_location: link.dataset.callLocation, page_path: location.pathname };
-          const w = window as typeof window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void };
-          w.dataLayer = w.dataLayer || [];
-          w.dataLayer.push(event);
-          w.gtag?.('event', 'click_to_call', { call_location: event.call_location, page_path: event.page_path, transport_type: 'beacon' });
-          window.dispatchEvent(new CustomEvent('probate:call-click', { detail: event }));
+      document
+        .querySelectorAll<HTMLAnchorElement>("a[data-call-location]")
+        .forEach((link) => {
+          link.addEventListener("click", () => {
+            const event = {
+              event: "click_to_call",
+              call_location: link.dataset.callLocation,
+              page_path: location.pathname,
+            };
+            const w = window as typeof window & {
+              dataLayer?: unknown[];
+              gtag?: (...args: unknown[]) => void;
+            };
+            w.dataLayer = w.dataLayer || [];
+            w.dataLayer.push(event);
+            w.gtag?.("event", "click_to_call", {
+              call_location: event.call_location,
+              page_path: event.page_path,
+              transport_type: "beacon",
+            });
+            window.dispatchEvent(
+              new CustomEvent("probate:call-click", { detail: event }),
+            );
+          });
         });
-      });
     </script>
   </body>
 </html>

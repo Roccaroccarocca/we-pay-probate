@@ -1,6 +1,46 @@
 ---
-import Layout from '../components/Layout.astro';
+import Layout from "../components/Layout.astro";
+import { site } from "../site";
 ---
-<Layout title="Privacy & Call Tracking | We Pay Probate" description="How this website handles phone links and optional analytics.">
-<main id="main" class="wrap section policy"><p class="eyebrow">WE PAY PROBATE</p><h1>Privacy & call tracking</h1><p>This website provides information and links to call We Pay Probate. It does not currently collect information through a contact form.</p><h2>Phone calls</h2><p>Clicking a call link opens your device’s phone application. Information you share on a call is provided to the business, rather than collected by this website. Ask the business about how it handles that information before sharing sensitive details.</p><h2>Website analytics</h2><p>The site includes support for optional Google Analytics. When configured, analytics can measure page visits and clicks on phone links. A phone-link click does not establish that a call connected. Event data includes the page path and button location, rather than what you discuss on a call. Google Analytics may use cookies and process device and usage information.</p><h2>Call recording</h2><p>This website does not itself record calls or implement a call-tracking service. Any future call tracking or recording requires an updated disclosure and appropriate consent arrangements.</p><h2>Questions</h2><p>For questions about information handling, call <a href="tel:+19543206336" data-call-location="privacy">954-320-6336</a>.</p></main>
+
+<Layout
+  title="Privacy & Call Tracking | We Pay Probate"
+  description="How this website handles phone links and optional analytics."
+>
+  <main id="main" class="wrap section policy">
+    <p class="eyebrow">WE PAY PROBATE</p><h1>Privacy & call tracking</h1><p>
+      This website provides information and links to call We Pay Probate. It
+      does not collect information through a contact form.
+    </p><h2>Phone calls</h2><p>
+      Clicking a call link opens your device’s phone application. Information
+      you share on a call is provided to the business, rather than collected by
+      this website. Ask the business about how it handles that information
+      before sharing sensitive details.
+    </p><h2>Website analytics</h2><p>
+      {
+        /^G-[A-Z0-9]+$/.test(site.gaId)
+          ? "Google Analytics is enabled on this version of the site."
+          : "Google Analytics is not enabled on this version of the site."
+      } Phone-link clicks generate a local browser event with the page path and button
+      location. When Google Analytics is enabled, those events and page visits may
+      be sent to Google; analytics may use cookies and process device and usage information.
+      Event data does not include what you discuss on a call.
+    </p><p>
+      A phone-link click measures an attempted call action, not a connected
+      call. This site does not use dynamic number insertion or a connected-call
+      attribution service.
+    </p><h2>Hosting</h2><p>
+      The hosting provider may process technical request information, such as IP
+      addresses, to deliver and protect the website.
+    </p><h2>Call recording</h2><p>
+      This website does not record calls or implement a call-recording service.
+      Any future call tracking or recording requires an updated disclosure and
+      appropriate consent arrangements.
+    </p><h2>Questions</h2><p>
+      For questions about information handling, call <a
+        href={site.phoneHref}
+        data-call-location="privacy">{site.phone}</a
+      >.
+    </p>
+  </main>
 </Layout>

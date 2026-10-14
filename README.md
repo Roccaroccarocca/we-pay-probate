@@ -1,10 +1,12 @@
 # We Pay Probate
 
-A separate, mobile-first Astro website. The existing WordPress site is not changed. Static HTML, locally rendered artwork, and small tracking scripts keep the pages lightweight. No CMS, form backend, or call-recording provider is connected yet.
+A mobile-first Astro site for inherited-property assistance and direct, as-is purchases in Miami-Dade, Broward, and Palm Beach Counties. The primary action is a free initial phone consultation at **954-320-6336**.
 
-## Develop
+The design uses the supplied blue/orange brand reference, warm off-white backgrounds, locally hosted DM Sans and DM Serif Display fonts, and lightweight SVG artwork. The house is an illustration, not a photograph of a business property. No owner identity, credentials, testimonials, or outcome claims are invented.
 
-Use Node 22.12+ or Node 24. This cloud checkout already has Node 24.
+## Develop and build
+
+Use Node 24, or Node 22.12+.
 
 ```sh
 cd /workspace/we-pay-probate
@@ -12,32 +14,61 @@ npm ci --cache /workspace/.npm-cache
 npm run dev
 ```
 
-The server runs on port 4321. `npm run build` produces `dist/`; `npm run preview` serves that build. Hosting can use any static hosting service with build command `npm run build` and output directory `dist`.
+Astro 7 runs the development server in the background on port 4321. Use these commands to inspect or stop it:
 
-## Editing and SEO
+```sh
+ASTRO_TELEMETRY_DISABLED=1 npm exec -- astro dev status
+ASTRO_TELEMETRY_DISABLED=1 npm exec -- astro dev logs
+ASTRO_TELEMETRY_DISABLED=1 npm exec -- astro dev stop
+```
 
-- `src/pages/index.astro`: homepage copy, sections, and FAQs.
-- `src/styles/global.css`: design and responsive layout.
-- `src/site.ts`: phone, service area, production URL, indexing, analytics.
-- `src/components/Layout.astro`: metadata, canonical URL, Organization JSON-LD, navigation, phone tracking.
-- `src/pages/robots.txt.ts` and `src/pages/sitemap.xml.ts`: crawler controls and sitemap.
-- `src/pages/privacy.astro`: current tracking disclosure. Review with the owner before launch.
+Validate the static site:
 
-Review builds intentionally have `noindex, follow`. Crawling remains allowed so crawlers can see the noindex directive. This does not affect the current WordPress site. Keep any staging host non-indexable, including after production goes live. At production build time set `PUBLIC_INDEXABLE=true`; confirm the host does not add an `X-Robots-Tag: noindex` header. Canonicals point to `https://wepayprobate.com`. If using a different production domain, update `productionUrl` and Astro's `site` setting.
+```sh
+PUBLIC_INDEXABLE=false PUBLIC_GA_MEASUREMENT_ID='' npm run build
+npm run preview -- --port 4322
+ASTRO_TELEMETRY_DISABLED=1 npm exec -- astro preview stop
+```
 
-## Calls and analytics
+The output is in `dist/`. No backend, database, form service, or secret is needed. There is no repository test or type-check script. Browser checks should cover the homepage, privacy page, 404 page, FAQ keyboard interaction, mobile call bar, all phone-link events, metadata, crawler files, assets, and responsive layout.
 
-All primary calls use `tel:+19543206336`. Clicks queue a `click_to_call` event in `window.dataLayer` with `call_location` and `page_path`, and dispatch the `probate:call-click` browser event. With a valid `PUBLIC_GA_MEASUREMENT_ID=G-...` at build time, the site loads GA4 and sends the event using gtag. Without an ID, no analytics provider receives these events. Mark `click_to_call` as a key event in GA4 after confirming it arrives in DebugView/Realtime. Avoid simultaneously configuring GTM to send the same event.
+## Revise the content
 
-Click tracking measures an attempted call action, not a connected call. Source-attributed connected calls require a separately configured call-tracking service with dynamic number insertion. It is not implemented. No recording is enabled. Review analytics consent needs and the privacy notice before enabling analytics; the current build does not include a consent manager.
+- `src/pages/index.astro`: homepage structure and offer copy.
+- `src/content/home.ts`: recognition cards, eight FAQs, and the verified-credibility model.
+- `src/site.ts`: phone, service area, canonical domain, indexing, and analytics configuration.
+- `src/styles/global.css`: design tokens, local fonts, and responsive styles.
+- `src/components/CallButton.astro`: shared phone action.
+- `src/components/HeroArt.astro`: original house illustration.
+- `src/components/Layout.astro`: header/footer, SEO metadata, schema, and click tracking.
+- `src/pages/privacy.astro`: tracking disclosure; review against actual business practices before launch.
+- `public/og-image.png`: 1200 × 630 social-sharing artwork. Regenerate when branding changes.
+- `BUSINESS-FACTS-NEEDED.md`: owner facts and agreement details still needed.
 
-## Before launch
+The credibility section is omitted from the public HTML while `credibility` is null. Add only verified owner details, a real approved photograph, and authentic testimonials used with permission. The supplied screenshot was used as a visual reference; its 48-hour closing, unconditional fee coverage, experience, commission, and hours claims are not reused.
 
-1. Have the owner confirm the business identity, phone, offered services, purchase rights, and precise terms for covering probate costs. No invented testimonials, credentials, or success rates are used.
-2. Review the published privacy notice and legal/service descriptions. The fee arrangement copy reflects supplied source material but is not a substitute for the actual agreement.
-3. Inventory existing WordPress URLs and preserve valuable pages or map each changed URL to an appropriate 301 redirect. No old-site URL inventory was available in this environment.
-4. Deploy a separate review build. Check on actual phones and confirm dialing reaches the owner.
-5. Connect production hosting/domain only after approval. Set indexing at build time, check robots/meta/HTTP headers, submit `/sitemap.xml` in Search Console, and request indexing.
-6. Add verified owner/team information and authentic testimonials when supplied. Local landing pages should contain useful county-specific content rather than copied doorway pages.
+## Search controls
 
-No changes to DNS or WordPress, deployment, external analytics setup, or live phone calls are performed by this repository.
+Review builds default to `noindex, follow`. Set `PUBLIC_INDEXABLE=true` only for an approved production build. Keep every staging build non-indexable. Crawling stays allowed so crawlers can read the noindex directive. Noindex is not access control.
+
+The sitemap is empty for review builds. Production includes the homepage and privacy page, and robots.txt advertises the sitemap. The 404 page always stays noindex. Per-page titles, descriptions, canonical URLs, Open Graph, Twitter metadata, and Organization schema are in the shared layout; schema uses only the supplied name, phone, and service area.
+
+Canonicals and sharing-image URLs use `https://wepayprobate.com`. The production-domain image will be reachable there only after deployment; staging previews may not fetch it from the live WordPress site. If the eventual production domain differs, update `productionUrl` in `src/site.ts` and `site` in `astro.config.mjs`.
+
+`astro.config.mjs` includes a redirects configuration point. First inventory the real WordPress URLs, then map changed URLs to useful destinations and configure permanent HTTP redirects on the eventual host. No URLs or redirects have been guessed. At launch also inspect host-level `X-Robots-Tag` headers; an old staging noindex header overrides an indexable build.
+
+## Phone events and optional GA4
+
+Every phone link uses `tel:+19543206336` and a distinct `data-call-location`. A click queues one `click_to_call` object in `window.dataLayer` and dispatches `probate:call-click`. The event contains `call_location` and `page_path`.
+
+A valid `PUBLIC_GA_MEASUREMENT_ID=G-...` enables GA4 at build/start time. No ID is supplied or enabled by default. With GA4 enabled, the handler also sends one gtag event with the same fields. Avoid configuring GTM to send the queued event a second time. Confirm the event in GA4 before marking it as a key event.
+
+A click is an attempted call action; it does not prove connection or attribute a connected call. Dynamic number insertion and a separate connected-call provider are not implemented. No call recording is enabled. Review privacy and consent needs before enabling analytics; the site does not include a consent manager.
+
+## Scope
+
+This implementation is built and reviewed locally. A separate Netlify staging deployment is now requested. `netlify.toml` configures Node 24, the Astro build, and `dist/` as the output. Both `netlify.toml` and `public/_headers` keep the staging site noindex. Remove those host-level restrictions only for an approved production launch.
+
+Deployment requires Netlify account access. Supply `NETLIFY_AUTH_TOKEN` securely through cloud environment settings, with proxy access to `api.netlify.com`. Never put a token in repository files or chat. Create a separate staging site rather than deploying to the existing live site; verify the returned Netlify URL before sharing it. Do not change DNS or WordPress, enable analytics, or place phone calls.
+
+The older tracked `we-pay-probate-netlify.zip` is an earlier artifact and does not contain this redesign. The refreshed `we-pay-probate-netlify-drop.zip` contains the current `dist/` output with the files at its root. See `NETLIFY-DROP.md` for browser upload instructions; no token is needed for Netlify Drop.

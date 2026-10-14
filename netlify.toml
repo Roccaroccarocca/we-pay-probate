@@ -1,0 +1,14 @@
+# Dedicated staging configuration. Do not connect the live domain to this site.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+  PUBLIC_INDEXABLE = "false"
+  PUBLIC_GA_MEASUREMENT_ID = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"

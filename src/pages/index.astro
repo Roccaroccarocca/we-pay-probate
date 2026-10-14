@@ -1,26 +1,353 @@
 ---
-import Layout from '../components/Layout.astro';
-import { site } from '../site';
-const faqs = [
-  ['Can I call if probate hasn’t started?', 'Yes. You can call to discuss your property and where you are in the process. Probate and the authority to sell will need to be reviewed before a sale can move forward.'],
-  ['What if I live outside Florida?', 'We work with people who have inherited property in Miami-Dade, Broward, and Palm Beach Counties, including heirs who live out of state. Start with a phone conversation about the home and what needs to happen next.'],
-  ['Do I have to repair or empty the house?', 'We consider direct purchases of homes as-is, including homes that need repairs or still contain belongings. We’ll discuss the condition and any cleanout needs when reviewing the property.'],
-  ['How does paying probate costs work?', 'After reviewing your situation, we can discuss whether an arrangement to cover probate-related costs is available. The scope, conditions, and any purchase rights must be set out in a written agreement. Our existing approach asks for the first right to offer and purchase the property; ask us to explain exactly what that means for your situation.'],
-  ['How soon can the property sell?', 'Timing depends on the estate, title, required approvals, and paperwork. Once the legal requirements are satisfied, we can discuss a closing date that works for you. A probate timeline cannot be guaranteed.'],
-  ['Does calling commit me to selling?', 'No. The initial phone consultation is free and carries no obligation to sell. Any future arrangement or purchase would require your review and a written agreement.'],
-];
+import Layout from "../components/Layout.astro";
+import Icon from "../components/Icon.astro";
+import CallButton from "../components/CallButton.astro";
+import HeroArt from "../components/HeroArt.astro";
+import Credibility from "../components/Credibility.astro";
+import { concerns, faqs } from "../content/home";
+import { site } from "../site";
 ---
-<Layout title="Inherited a Home in South Florida? | We Pay Probate" description="Discuss your inherited home in Miami-Dade, Broward, or Palm Beach County. Explore probate-related property help and an as-is sale. Call 954-320-6336.">
+
+<Layout
+  title="Inherited a Home in South Florida? | We Pay Probate"
+  description="Inherited a home in Miami-Dade, Broward, or Palm Beach? Discuss probate-related property help and a direct, as-is sale. Free initial call: 954-320-6336."
+>
   <main id="main">
-    <section class="hero wrap">
-      <div class="hero-copy"><p class="eyebrow"><span class="dot"></span> SOUTH FLORIDA · INHERITED PROPERTY HELP</p><h1>A home inherited.<br />A lot to navigate.<br /><em>A way forward.</em></h1><p class="intro">You don’t have to figure out the property side of probate alone. Let’s talk through your situation, the home, and your next steps.</p><a class="button" href={site.phoneHref} data-call-location="hero">Let’s talk about your property <span>↗</span></a><p class="micro">Free phone consultation. No obligation to sell.</p></div>
-      <div class="hero-art" aria-label="Illustration of a South Florida home"><div class="art-top"><span>A NEW CHAPTER STARTS HERE</span><span>01 / FL</span></div><svg viewBox="0 0 560 420" role="img" aria-label="A welcoming home beneath the South Florida sun"><circle cx="405" cy="96" r="57" fill="#edb68c"/><path d="M0 330Q150 280 300 322T560 300V420H0Z" fill="#c9d4bf"/><path d="M0 373Q200 330 560 360V420H0Z" fill="#a8bca5"/><path d="M102 228L273 113L448 228Z" fill="#234f48"/><path d="M126 220H423V354H126Z" fill="#f5eee0"/><path d="M110 227L273 118L436 227" fill="none" stroke="#173e39" stroke-width="14" stroke-linejoin="round"/><path d="M250 265H305V354H250Z" fill="#c07854"/><circle cx="294" cy="310" r="3" fill="#f5eee0"/><g fill="#94b3b0" stroke="#234f48" stroke-width="7"><path d="M158 261H215V307H158Z"/><path d="M339 261H396V307H339Z"/></g><path d="M187 261V307M367 261V307" stroke="#234f48" stroke-width="4"/><path d="M261 355L219 420H351L297 355" fill="#e7d2b5"/><path d="M66 360Q87 250 65 147" fill="none" stroke="#716e4d" stroke-width="11"/><g fill="#446a4e"><path d="M67 159Q5 91 3 175Q26 145 67 159Z"/><path d="M67 159Q68 62 127 94Q81 111 67 159Z"/><path d="M67 159Q130 107 151 168Q107 143 67 159Z"/><path d="M67 159Q27 104 21 110Q26 77 67 159Z"/></g><g fill="#668260"><ellipse cx="414" cy="351" rx="41" ry="18"/><ellipse cx="145" cy="352" rx="39" ry="17"/></g></svg><div class="art-note"><span class="note-icon">↗</span><div>A property. A family. A fresh start.<small>Local help, wherever you call home.</small></div></div></div>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="dot"></span> INHERITED PROPERTY · SOUTH FLORIDA
+        </p>
+        <h1 id="hero-title">
+          Inherited a home?<br />Find a <em>clearer</em><br /><em
+            >path forward.</em
+          >
+        </h1>
+        <p class="intro">
+          A home can hold a lot of memories.<br class="desktop-break" /> And sometimes,
+          a lot of questions.
+        </p>
+        <p class="hero-description">
+          We help families in Miami-Dade, Broward, and Palm Beach discuss
+          probate-related property assistance and a direct, as-is sale—even when
+          they live out of state.
+        </p>
+        <CallButton location="hero" />
+        <div class="hero-reassurance">
+          <a href={site.phoneHref} data-call-location="hero-number"
+            >{site.phone}</a
+          ><span>Free initial call. No obligation to sell.</span>
+        </div>
+      </div>
+      <HeroArt />
     </section>
-    <div class="service-strip"><div class="wrap"><span>HERE FOR YOU IN</span><strong>Miami-Dade County</strong><span class="separator">✳</span><strong>Broward County</strong><span class="separator">✳</span><strong>Palm Beach County</strong></div></div>
-    <section id="your-options" class="section wrap"><div class="section-heading"><p class="eyebrow">LESS ON YOUR SHOULDERS</p><h2>The house comes with questions.<br />Let’s work through them.</h2><p>An inherited home can mean repairs, belongings, estate paperwork, and decisions you weren’t expecting. Start with one conversation.</p></div><div class="cards"><article class="card"><span class="card-number">01 / THE PROCESS</span><div class="card-icon">↗</div><h3>Probate-related property help</h3><p>Have a home you can’t sell because of estate or legal issues? We’ll discuss the obstacles and whether help with probate-related costs may be available.</p><a href="#questions">Understand the arrangement ↗</a></article><article class="card"><span class="card-number">02 / THE PROPERTY</span><div class="card-icon">⌂</div><h3>Sell the home as-is</h3><p>Explore a direct purchase without taking on renovations. We consider homes needing repairs, updates, or help clearing out belongings.</p><a href={site.phoneHref} data-call-location="as-is-card">Discuss your home ↗</a></article><article class="card"><span class="card-number">03 / THE DISTANCE</span><div class="card-icon">◎</div><h3>Live elsewhere? Start here.</h3><p>You may be hundreds of miles away while the house is in South Florida. Tell us what’s happening and we’ll discuss the next steps for the property.</p><a href="#out-of-state">Help for out-of-state heirs ↗</a></article></div></section>
-    <section id="how-it-works" class="process section"><div class="wrap process-grid"><div><p class="eyebrow">A SIMPLE PLACE TO START</p><h2>One call.<br />More clarity.</h2><p>You don’t need to have every answer before you reach out.</p><a class="text-link" href={site.phoneHref} data-call-location="process">Call {site.phone} ↗</a></div><ol class="steps"><li><span>01</span><div><h3>Tell us your situation</h3><p>Where is the home? Has probate started? What feels most difficult right now? We’ll listen.</p></div></li><li><span>02</span><div><h3>Explore a path for the property</h3><p>We review the home and estate-related obstacles, then explain any proposed assistance and purchase terms.</p></div></li><li><span>03</span><div><h3>Decide with a clear understanding</h3><p>Review the written terms and get the advice you need. A sale moves forward only when the necessary legal requirements are satisfied.</p></div></li></ol></div></section>
-    <section id="out-of-state" class="section wrap remote"><div class="remote-art" aria-hidden="true"><span class="remote-label">NEAR OR FAR. STILL FAMILY.</span><div class="orbit"><span>FL</span><i class="orbit-point"></i></div><p>South Florida property.<br />Support from wherever you are.</p></div><div><p class="eyebrow">FOR OUT-OF-STATE HEIRS</p><h2>Your life is there.<br />The house is here.</h2><p>Managing a parent’s home from another state can feel overwhelming. A first conversation can help you understand the property-related decisions ahead.</p><ul class="check-list"><li>Homes in Miami-Dade, Broward, and Palm Beach</li><li>Start by phone, wherever you live</li><li>Discuss repairs, belongings, and an as-is purchase</li><li>Understand proposed terms before deciding</li></ul><a class="button" href={site.phoneHref} data-call-location="out-of-state">Talk through your next steps <span>↗</span></a></div></section>
-    <section id="questions" class="section wrap faq"><div><p class="eyebrow">A LITTLE MORE CLARITY</p><h2>Questions you<br />might be carrying.</h2><p>Something else on your mind?<br /><a class="text-link" href={site.phoneHref} data-call-location="faq">We’re a phone call away ↗</a></p></div><div>{faqs.map(([question, answer]) => <details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
-    <section class="closing"><div class="wrap"><p class="eyebrow">YOU DON’T NEED TO HAVE IT ALL FIGURED OUT</p><h2>Let’s find your<br /><em>next step.</em></h2><p>Tell us about the home. We’ll take it from there, together.</p><a class="button light" href={site.phoneHref} data-call-location="closing">Call {site.phone}<span>↗</span></a><p class="micro">Free phone consultation · No obligation to sell</p></div></section>
+
+    <div class="service-strip">
+      <div class="wrap">
+        <span class="strip-label"
+          ><Icon name="pin" size={17} /> HERE FOR FAMILIES IN</span
+        ><span>Miami-Dade County</span><span
+          class="strip-dot"
+          aria-hidden="true">·</span
+        ><span>Broward County</span><span class="strip-dot" aria-hidden="true"
+          >·</span
+        ><span>Palm Beach County</span>
+      </div>
+    </div>
+
+    <section class="section wrap recognition" aria-labelledby="situation-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">WHEN THE HOUSE COMES WITH QUESTIONS</p><h2
+            id="situation-title"
+          >
+            Does any of this<br />feel familiar?
+          </h2>
+        </div><p>
+          You may be handling a loss, a property, and a process that’s new to
+          you. You don’t have to have it all figured out before you call.
+        </p>
+      </div>
+      <div class="concern-grid">
+        {
+          concerns.map((item) => (
+            <article class="concern">
+              <>
+                <span class="concern-icon">
+                  <Icon name={item.icon} size={27} />
+                </span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </>
+            </article>
+          ))
+        }
+      </div>
+      <p class="expense-note">
+        <Icon name="heart" size={20} /><span
+          >Worried about probate expenses, too? We can discuss whether help with
+          costs may be available for your situation.</span
+        >
+      </p>
+    </section>
+
+    <section
+      id="your-options"
+      class="offer section"
+      aria-labelledby="offer-title"
+    >
+      <div class="wrap">
+        <div class="offer-grid">
+          <div class="offer-copy">
+            <p class="eyebrow">PROPERTY HELP. A POSSIBLE PURCHASE.</p><h2
+              id="offer-title"
+            >
+              Less to take on.<br />More to understand.
+            </h2><p class="section-intro">
+              We review the home and estate-related obstacles, discuss possible
+              help with probate costs, and explore buying the property directly.
+            </p>
+            <ul class="benefits">
+              <li>
+                <Icon name="check" size={20} /><div>
+                  <strong>An as-is purchase</strong><span
+                    >No renovations needed before a proposed sale.</span
+                  >
+                </div>
+              </li><li>
+                <Icon name="check" size={20} /><div>
+                  <strong>A plan for what’s still in the house</strong><span
+                    >Discuss belongings and cleanout needs up front.</span
+                  >
+                </div>
+              </li><li>
+                <Icon name="check" size={20} /><div>
+                  <strong>A first conversation from anywhere</strong><span
+                    >Start by phone, whether you’re nearby or out of state.</span
+                  >
+                </div>
+              </li><li>
+                <Icon name="check" size={20} /><div>
+                  <strong>Possible help with probate-related costs</strong><span
+                    >Subject to review, availability, and written terms.</span
+                  >
+                </div>
+              </li>
+            </ul>
+            <p class="buyer-note">
+              <strong>A clear distinction:</strong> We Pay Probate is a prospective
+              buyer, not a law firm or an independent adviser on every selling option.
+            </p>
+          </div>
+          <aside class="terms-card" aria-labelledby="terms-title">
+            <span class="terms-icon"><Icon name="document" size={30} /></span><p
+              class="eyebrow"
+            >
+              THE IMPORTANT PART
+            </p><h3 id="terms-title">
+              Help with costs.<br />Clear terms first.
+            </h3><p>
+              Our approach asks for the <strong
+                >first right to offer and purchase the property.</strong
+              > Any fee coverage, purchase rights, and other obligations must be
+              explained in a written agreement before you decide.
+            </p><div class="terms-divider"></div><h4>
+              Make sure you understand:
+            </h4><ul>
+              <li>Which costs are covered, and any limits.</li><li>
+                What purchase rights you’re agreeing to.
+              </li><li>
+                What happens to covered costs if a purchase doesn’t go ahead.
+              </li>
+            </ul><p class="terms-advice">
+              Take the time you need. Have a qualified attorney review any
+              agreement.
+            </p><a
+              class="text-link"
+              href={site.phoneHref}
+              data-call-location="offer-terms"
+              >Talk through the arrangement <Icon name="arrow" size={18} /></a
+            >
+          </aside>
+        </div>
+        <div class="effort-grid">
+          <div>
+            <p class="eyebrow">WHAT YOU MAY BE ABLE TO SET ASIDE</p><p>
+              Renovations before a proposed sale. Some property-management
+              burdens. Figuring out the first step alone.
+            </p>
+          </div><div>
+            <p class="eyebrow">WHAT STILL NEEDS TO HAPPEN</p><p>
+              Review of the estate and title. Clear written terms. Any required
+              approvals and legal authority to sell.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="how-it-works"
+      class="section wrap process"
+      aria-labelledby="process-title"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">A SIMPLE PLACE TO START</p><h2 id="process-title">
+            One conversation.<br />A clearer next step.
+          </h2>
+        </div><p>
+          The first call is about understanding your situation. You decide
+          whether to take it further.
+        </p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-number">01</span><h3>Tell us about the home.</h3><p>
+            Where is it? What’s your relationship to the estate? Tell us what’s
+            holding things up and what you’d like to happen.
+          </p>
+        </li><li>
+          <span class="step-number">02</span><h3>
+            Understand the arrangement.
+          </h3><p>
+            Discuss possible property assistance, a direct purchase, and any fee
+            coverage. Ask questions about the proposed terms.
+          </p>
+        </li><li>
+          <span class="step-number">03</span><h3>Choose your next step.</h3><p>
+            Review written terms and seek appropriate advice. A sale proceeds
+            only when the required legal conditions are satisfied.
+          </p>
+        </li>
+      </ol>
+      <div class="process-bottom">
+        <p>
+          <strong>A call can happen now. Probate takes its own time.</strong><br
+          />Estate requirements, title, and approvals determine the timeline.
+        </p><CallButton location="process" label="Let’s talk about your home" />
+      </div>
+    </section>
+
+    <section
+      id="out-of-state"
+      class="remote section"
+      aria-labelledby="remote-title"
+    >
+      <div class="wrap remote-grid">
+        <div class="remote-visual" aria-hidden="true">
+          <p class="eyebrow">A LITTLE CLOSER, EVEN FROM FAR AWAY</p><div
+            class="distance-art"
+          >
+            <div class="distance-circle">
+              <Icon name="home" size={58} /><span>SOUTH FLORIDA</span>
+            </div><span class="distance-pin"><Icon name="pin" size={25} /></span
+            ><svg viewBox="0 0 420 300" fill="none"
+              ><path
+                d="M76 50C335 8 354 285 155 261"
+                stroke="#0e5082"
+                stroke-opacity=".35"
+                stroke-width="2"
+                stroke-dasharray="5 7"></path><circle
+                cx="76"
+                cy="50"
+                r="6"
+                fill="#c4592a"></circle><circle
+                cx="155"
+                cy="261"
+                r="6"
+                fill="#0e5082"></circle></svg
+            >
+          </div><p>
+            The house is here.<br /><em
+              >The conversation starts wherever you are.</em
+            >
+          </p><div class="county-tags">
+            <span>Miami-Dade</span><span>Broward</span><span>Palm Beach</span>
+          </div>
+        </div>
+        <div class="remote-copy">
+          <p class="eyebrow">FOR OUT-OF-STATE HEIRS</p><h2 id="remote-title">
+            Your life is there.<br />The home is here.
+          </h2><p class="section-intro">
+            You don’t have to live in Florida to start the conversation.
+          </p><p>
+            If you inherited a home in one of our three counties, call from
+            wherever you are. We can discuss the property, any repairs or
+            belongings, and the steps that may be needed before a sale.
+          </p><p class="remote-caveat">
+            Some later steps may require signatures, notarization, or travel.
+            We’ll discuss your situation rather than promise that everything can
+            happen remotely.
+          </p><a
+            class="text-link"
+            href={site.phoneHref}
+            data-call-location="out-of-state"
+            >Start with a call <span>{site.phone}</span><Icon
+              name="arrow"
+              size={19}
+            /></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <Credibility />
+
+    <section
+      id="questions"
+      class="section wrap faq"
+      aria-labelledby="faq-title"
+    >
+      <div class="faq-heading">
+        <p class="eyebrow">A LITTLE MORE CLARITY</p><h2 id="faq-title">
+          Good questions.<br />Straight answers.
+        </h2><p>
+          It’s okay to ask about the details.<br />That’s what the first
+          conversation is for.
+        </p><a class="text-link" href={site.phoneHref} data-call-location="faq"
+          >Ask us your question <Icon name="arrow" size={18} /></a
+        >
+      </div><div class="faq-list">
+        {
+          faqs.map(([question, answer]) => (
+            <details>
+              <>
+                <summary>
+                  {question}
+                  <span class="faq-plus" aria-hidden="true">
+                    +
+                  </span>
+                </summary>
+                <p>{answer}</p>
+              </>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="wrap closing-inner">
+        <span class="closing-mark" aria-hidden="true"
+          ><Icon name="home" size={36} /></span
+        ><p class="eyebrow">NO NEED TO HAVE ALL THE ANSWERS</p><h2
+          id="closing-title"
+        >
+          Start with a conversation,<br /><em>not a commitment.</em>
+        </h2><p>
+          Tell us about the inherited home and what you’re facing.<br
+            class="desktop-break"
+          /> We’ll discuss whether our property assistance and purchase approach
+          could fit.
+        </p><CallButton
+          location="closing"
+          label={"Call " + site.phone}
+          light
+        /><p class="micro">
+          Free initial phone consultation. No obligation to sell.
+        </p>
+      </div>
+    </section>
   </main>
 </Layout>

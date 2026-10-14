@@ -1,0 +1,24 @@
+---
+import Icon from "./Icon.astro";
+import { site } from "../site";
+interface Props {
+  location: string;
+  label?: string;
+  light?: boolean;
+}
+const {
+  location,
+  label = "Call for a free consultation",
+  light = false,
+} = Astro.props;
+---
+
+<a
+  class:list={["button", { "button-light": light }]}
+  href={site.phoneHref}
+  data-call-location={location}
+  ><Icon name="phone" size={20} /><span>{label}</span><Icon
+    name="arrow"
+    size={20}
+  /></a
+>

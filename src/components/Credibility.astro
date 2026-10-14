@@ -1,0 +1,28 @@
+---
+import { credibility } from "../content/home";
+---
+
+{
+  credibility && (
+    <section class="section wrap credibility" aria-labelledby="owner-title">
+      <>
+        <img
+          src={credibility.photo}
+          alt={credibility.photoAlt}
+          width="480"
+          height="480"
+          loading="lazy"
+        />
+        <div>
+          <p>{credibility.biography}</p>
+          {credibility.testimonials?.map((item) => (
+            <blockquote>
+              <p>{item.quote}</p>
+              <cite>{item.attribution}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </>
+    </section>
+  )
+}
