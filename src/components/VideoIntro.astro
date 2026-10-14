@@ -1,0 +1,118 @@
+---
+import { site } from "../site";
+import CallButton from "./CallButton.astro";
+const video = site.media.introVideo;
+const youtubeId =
+  video.youtubeId && /^[A-Za-z0-9_-]{11}$/.test(video.youtubeId)
+    ? video.youtubeId
+    : null;
+const available = Boolean(video.src || youtubeId);
+---
+
+{
+  available && (
+    <section
+      id="intro-video"
+      class="video-section section"
+      aria-labelledby="video-title"
+    >
+      <div class="wrap video-grid">
+        <>
+          <div>
+            <>
+              <p class="eyebrow">A QUICK INTRODUCTION FROM LEO</p>
+              <h2 id="video-title">
+                Hear how we
+                <br />
+                may be able to help.
+              </h2>
+              <p>
+                Get a short introduction to the property assistance and
+                direct-purchase approach. Then call to discuss your own
+                situation.
+              </p>
+              <CallButton location="video" />
+            </>
+          </div>
+          <div class="video-frame">
+            {video.src ? (
+              <video
+                controls
+                playsinline
+                preload="none"
+                poster={video.poster || undefined}
+                aria-label="A short introduction from Leo at We Pay Probate"
+              >
+                {video.captions && (
+                  <track
+                    kind="captions"
+                    src={video.captions}
+                    srclang="en"
+                    label="English"
+                    default
+                  />
+                )}
+                <source src={video.src} type="video/mp4" />
+                <p>
+                  Your browser cannot play this video.{" "}
+                  <a href={video.src}>Open the introduction video</a>.
+                </p>
+              </video>
+            ) : (
+              <div
+                class="youtube-preview"
+                data-youtube-id={youtubeId}
+                data-start={video.start}
+                data-end={video.end}
+              >
+                {video.poster && (
+                  <img
+                    src={video.poster}
+                    alt=""
+                    width="960"
+                    height="540"
+                    loading="lazy"
+                  />
+                )}
+                <button
+                  type="button"
+                  class="video-play"
+                  aria-label="Load and play Leo’s introduction video"
+                >
+                  <span aria-hidden="true">▶</span>
+                  <strong>Watch Leo’s introduction</strong>
+                  <small>Loads a YouTube video when you press play</small>
+                </button>
+              </div>
+            )}
+          </div>
+        </>
+      </div>
+    </section>
+  )
+}
+<script>
+  document
+    .querySelectorAll<HTMLElement>(".youtube-preview")
+    .forEach((container) => {
+      container.querySelector("button")?.addEventListener("click", () => {
+        const id = container.dataset.youtubeId;
+        if (!id || !/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+        const params = new URLSearchParams({
+          autoplay: "1",
+          rel: "0",
+          playsinline: "1",
+          start: container.dataset.start || "0",
+          end: container.dataset.end || "45",
+        });
+        const iframe = document.createElement("iframe");
+        iframe.src =
+          "https://www.youtube-nocookie.com/embed/" + id + "?" + params;
+        iframe.title = "A short introduction from Leo at We Pay Probate";
+        iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        container.replaceChildren(iframe);
+      });
+    });
+</script>

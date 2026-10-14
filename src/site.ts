@@ -8,4 +8,16 @@ export const site = {
   indexable: import.meta.env.PUBLIC_INDEXABLE === "true",
   gaId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "",
   counties: ["Miami-Dade", "Broward", "Palm Beach"],
+  // Set real asset paths when the supplied media files are available.
+  media: {
+    ownerPhoto: null as string | null,
+    introVideo: {
+      src: null as string | null,
+      poster: null as string | null,
+      captions: null as string | null,
+      youtubeId: null as string | null,
+      start: 0,
+      end: 45,
+    },
+  },
 };

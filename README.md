@@ -2,7 +2,7 @@
 
 A mobile-first Astro site for inherited-property assistance and direct, as-is purchases in Miami-Dade, Broward, and Palm Beach Counties. The primary action is a free initial phone consultation at **954-320-6336**.
 
-The design uses the supplied blue/orange brand reference, warm off-white backgrounds, locally hosted DM Sans and DM Serif Display fonts, and lightweight SVG artwork. The house is an illustration, not a photograph of a business property. No owner identity, credentials, testimonials, or outcome claims are invented.
+The revised design uses blue, white, and green from the supplied existing-site reference. Its shorter flow prioritizes the offer, clear purchase conditions, an introduction to Leo, and phone actions. Locally hosted DM Sans and lightweight SVG artwork keep it fast. The house is an illustration, not a photograph of a business property. Leo and the small-company description were supplied by the user; credentials, testimonials, and outcome claims are not invented.
 
 ## Develop and build
 
@@ -35,17 +35,20 @@ The output is in `dist/`. No backend, database, form service, or secret is neede
 ## Revise the content
 
 - `src/pages/index.astro`: homepage structure and offer copy.
-- `src/content/home.ts`: recognition cards, eight FAQs, and the verified-credibility model.
+- `src/content/home.ts`: eight FAQs and the optional verified-testimonial model.
 - `src/site.ts`: phone, service area, canonical domain, indexing, and analytics configuration.
 - `src/styles/global.css`: design tokens, local fonts, and responsive styles.
 - `src/components/CallButton.astro`: shared phone action.
-- `src/components/HeroArt.astro`: original house illustration.
+- `src/components/HeroArt.astro`: original house illustration, used until the exact supplied photo is available.
+- `src/components/OwnerIntro.astro`: Leo’s small-company introduction.
+- `src/components/VideoIntro.astro`: native video or a YouTube segment loaded only after a play-button click.
+- `OWNER-MEDIA.md`: media setup and the proposed short-video outline.
 - `src/components/Layout.astro`: header/footer, SEO metadata, schema, and click tracking.
 - `src/pages/privacy.astro`: tracking disclosure; review against actual business practices before launch.
 - `public/og-image.png`: 1200 × 630 social-sharing artwork. Regenerate when branding changes.
 - `BUSINESS-FACTS-NEEDED.md`: owner facts and agreement details still needed.
 
-The credibility section is omitted from the public HTML while `credibility` is null. Add only verified owner details, a real approved photograph, and authentic testimonials used with permission. The supplied screenshot was used as a visual reference; its 48-hour closing, unconditional fee coverage, experience, commission, and hours claims are not reused.
+The user supplied Leo’s name, the small-company description, and a portrait reference. Leo’s introduction is published. Photo paths and video sources remain null until the actual files or source URLs are available; the player and photo elements are omitted rather than presenting broken media. The separate testimonial component is not published. Add only verified details and authentic testimonials used with permission. The supplied screenshot was used as a visual reference; its 48-hour closing, unconditional fee coverage, experience, commission, and hours claims are not reused.
 
 ## Search controls
 

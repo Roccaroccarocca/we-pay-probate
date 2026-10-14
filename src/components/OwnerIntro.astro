@@ -1,0 +1,49 @@
+---
+import { site } from "../site";
+import CallButton from "./CallButton.astro";
+---
+
+<section
+  id="meet-leo"
+  class:list={[
+    "section",
+    "wrap",
+    "owner-intro",
+    { "owner-with-photo": Boolean(site.media.ownerPhoto) },
+  ]}
+  aria-labelledby="owner-title"
+>
+  {
+    site.media.ownerPhoto && (
+      <figure class="owner-photo">
+        <>
+          <img
+            src={site.media.ownerPhoto}
+            alt="Leo and his wife"
+            width="1048"
+            height="838"
+            loading="lazy"
+          />
+          <figcaption>Leo and his wife.</figcaption>
+        </>
+      </figure>
+    )
+  }
+  <div class="owner-copy">
+    <p class="eyebrow">MEET THE PERSON BEHIND THE BUSINESS</p>
+    <h2 id="owner-title">A small company.<br />A personal approach.</h2>
+    <p class="section-intro">Meet Leo, the person behind We Pay Probate.</p>
+    <p>
+      When you’re handling an inherited home, it helps to know who you’re
+      talking to. Leo runs a small company that considers direct purchases of
+      homes in South Florida.
+    </p>
+    <p>
+      Start with the property, your situation, and your questions. The first
+      consultation is free. Any assistance or purchase arrangement comes with
+      written terms for you to review.
+    </p>
+    <CallButton location="owner" label="Talk about your inherited home" />
+    <p class="micro">Free initial phone consultation. No obligation to sell.</p>
+  </div>
+</section>

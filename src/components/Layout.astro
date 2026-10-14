@@ -94,23 +94,26 @@ const analyticsSetup = [
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <header class="header wrap">
-      <a class="brand" href="/" aria-label="We Pay Probate home"
-        ><span class="brand-symbol"><Icon name="home" size={25} /></span><span
-          >WE PAY<strong>PROBATE<span class="brand-dot">.</span></strong></span
-        ></a
-      >
-      <nav aria-label="Main navigation">
-        <a href="/#your-options">How we help</a><a href="/#how-it-works"
-          >The process</a
-        ><a href="/#questions">FAQs</a>
-      </nav>
-      <a class="header-call" href={site.phoneHref} data-call-location="header"
-        ><Icon name="phone" size={18} /><span
-          ><small>LET’S TALK</small>{site.phone}</span
-        ></a
-      >
-    </header>
+    <div class="header-shell">
+      <header class="header wrap">
+        <a class="brand" href="/" aria-label="We Pay Probate home"
+          ><span class="brand-symbol"><Icon name="home" size={25} /></span><span
+            >WE PAY<strong>PROBATE<span class="brand-dot">.</span></strong
+            ></span
+          ></a
+        >
+        <nav aria-label="Main navigation">
+          <a href="/#your-options">How we help</a><a href="/#how-it-works"
+            >The process</a
+          ><a href="/#questions">FAQs</a>
+        </nav>
+        <a class="header-call" href={site.phoneHref} data-call-location="header"
+          ><Icon name="phone" size={18} /><span
+            ><small>LET’S TALK</small>{site.phone}</span
+          ></a
+        >
+      </header>
+    </div>
     <slot />
     <footer class="footer">
       <div class="wrap">

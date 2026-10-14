@@ -1,8 +1,8 @@
 # Facts to confirm before launch
 
-These items are for the owner, not public-page copy. The site can be reviewed without them; the credibility section stays out of the rendered page until verified content is supplied.
+These items are for the owner, not public-page copy. The site can be reviewed without them; Leo’s supplied identity and the small-company introduction are published; testimonials and unverified experience claims remain omitted. The exact portrait file and video source are still needed.
 
-- Business identity: legal/trading name, owner name, approved biography, real photograph, and permission to use it. Confirm any experience or professional credentials before mentioning them.
+- Business identity: confirm the legal/trading name and any further biography. The user supplied Leo’s name and a portrait of Leo with his wife. Use that exact image once the file is available. No wife’s name or role is inferred. Confirm experience or credentials before mentioning them.
 - Offer: which probate-related legal, court, and other costs can be covered; eligibility, limits, payment timing, repayment conditions, and what happens if a purchase does not proceed.
 - Purchase rights: the precise meaning and duration of the first right to offer and purchase; what happens if the heir declines; and any other obligations. Have a qualified attorney review the public explanation against the actual agreement.
 - Property handling: agreed responsibilities for belongings, cleanout, repairs, and closing costs. Confirm the phone and service area.
