@@ -4,7 +4,7 @@ The user supplied Leo’s identity, described the business as a small company, a
 
 ## Pending assets
 
-The inline chat portrait is not available as a downloadable build asset. An original JPG/PNG file or usable source URL is needed. The original video file or YouTube link is also needed before selecting and making a shorter version.
+The inline chat portrait is not available as a downloadable build asset. An original JPG/PNG file or usable source URL is needed. The user supplied https://www.youtube.com/watch?v=dl4XQYkOdMQ. The page now offers the first 45 seconds as a click-to-load embedded segment. YouTube access is blocked in the cloud machine, so source footage and actual YouTube playback remain unreviewed here. This is a short playable segment, not a new edited MP4.
 
 Set actual paths in src/site.ts under site.media:
 

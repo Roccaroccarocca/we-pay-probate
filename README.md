@@ -48,7 +48,7 @@ The output is in `dist/`. No backend, database, form service, or secret is neede
 - `public/og-image.png`: 1200 × 630 social-sharing artwork. Regenerate when branding changes.
 - `BUSINESS-FACTS-NEEDED.md`: owner facts and agreement details still needed.
 
-The user supplied Leo’s name, the small-company description, and a portrait reference. Leo’s introduction is published. Photo paths and video sources remain null until the actual files or source URLs are available; the player and photo elements are omitted rather than presenting broken media. The separate testimonial component is not published. Add only verified details and authentic testimonials used with permission. The supplied screenshot was used as a visual reference; its 48-hour closing, unconditional fee coverage, experience, commission, and hours claims are not reused.
+The user supplied Leo’s name, the small-company description, and a portrait reference. Leo’s introduction is published. The supplied YouTube introduction is configured as a click-to-load 45-second preview. The portrait path stays null until its exact file is available; missing photo elements are omitted rather than broken. See OWNER-MEDIA.md for media status and verification limits. The separate testimonial component is not published. Add only verified details and authentic testimonials used with permission. The supplied screenshot was used as a visual reference; its 48-hour closing, unconditional fee coverage, experience, commission, and hours claims are not reused.
 
 ## Search controls
 
