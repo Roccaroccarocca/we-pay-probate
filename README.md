@@ -39,7 +39,7 @@ The output is in `dist/`. No backend, database, form service, or secret is neede
 - `src/site.ts`: phone, service area, canonical domain, indexing, and analytics configuration.
 - `src/styles/global.css`: design tokens, local fonts, and responsive styles.
 - `src/components/CallButton.astro`: shared phone action.
-- `src/components/HeroArt.astro`: original house illustration, used until the exact supplied photo is available.
+- `src/components/HeroArt.astro`: original house illustration, retained as a fallback; the current page uses the real supplied portrait.
 - `src/components/OwnerIntro.astro`: Leo’s small-company introduction.
 - `src/components/VideoIntro.astro`: native video or a YouTube segment loaded only after a play-button click.
 - `OWNER-MEDIA.md`: media setup and the proposed short-video outline.
@@ -48,7 +48,7 @@ The output is in `dist/`. No backend, database, form service, or secret is neede
 - `public/og-image.png`: 1200 × 630 social-sharing artwork. Regenerate when branding changes.
 - `BUSINESS-FACTS-NEEDED.md`: owner facts and agreement details still needed.
 
-The user supplied Leo’s name, the small-company description, and a portrait reference. Leo’s introduction is published. The supplied YouTube introduction is configured as a click-to-load 45-second preview. The portrait path stays null until its exact file is available; missing photo elements are omitted rather than broken. See OWNER-MEDIA.md for media status and verification limits. The separate testimonial component is not published. Add only verified details and authentic testimonials used with permission. The supplied screenshot was used as a visual reference; its 48-hour closing, unconditional fee coverage, experience, commission, and hours claims are not reused.
+The user supplied Leo’s name, the small-company description, and a portrait reference. Leo’s introduction is published. The supplied YouTube introduction is configured as a click-to-load 45-second preview. The exact user-supplied portrait is included at public/media/leo-and-wife.jpg and appears in the hero, owner section, and video poster. It has not been retouched or replaced. See OWNER-MEDIA.md for media status and verification limits. The separate testimonial component is not published. Add only verified details and authentic testimonials used with permission. The supplied screenshot was used as a visual reference; its 48-hour closing, unconditional fee coverage, experience, commission, and hours claims are not reused.
 
 ## Search controls
 

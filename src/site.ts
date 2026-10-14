@@ -10,10 +10,10 @@ export const site = {
   counties: ["Miami-Dade", "Broward", "Palm Beach"],
   // Set real asset paths when the supplied media files are available.
   media: {
-    ownerPhoto: null as string | null,
+    ownerPhoto: "/media/leo-and-wife.jpg" as string | null,
     introVideo: {
       src: null as string | null,
-      poster: null as string | null,
+      poster: "/media/leo-and-wife.jpg" as string | null,
       captions: null as string | null,
       youtubeId: "dl4XQYkOdMQ" as string | null,
       start: 0,

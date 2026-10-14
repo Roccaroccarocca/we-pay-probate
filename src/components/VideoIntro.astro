@@ -79,8 +79,20 @@ const available = Boolean(video.src || youtubeId);
                   class="video-play"
                   aria-label="Load and play Leo’s introduction video"
                 >
-                  <span aria-hidden="true">▶</span>
-                  <strong>Watch the first {video.end - video.start} seconds</strong>
+                  <span aria-hidden="true">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      focusable="false"
+                    >
+                      <path d="M7 4 20 12 7 20Z" />
+                    </svg>
+                  </span>
+                  <strong>
+                    Watch the first {video.end - video.start} seconds
+                  </strong>
                   <small>Leo’s introduction · press play to load YouTube</small>
                 </button>
               </div>
