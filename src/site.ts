@@ -13,7 +13,7 @@ export const site = {
     ownerPhoto: "/media/leo-and-wife.jpg" as string | null,
     introVideo: {
       src: null as string | null,
-      poster: "/media/leo-and-wife.jpg" as string | null,
+      poster: "https://i.ytimg.com/vi/dl4XQYkOdMQ/hqdefault.jpg" as string | null,
       captions: null as string | null,
       youtubeId: "dl4XQYkOdMQ" as string | null,
       start: 0,

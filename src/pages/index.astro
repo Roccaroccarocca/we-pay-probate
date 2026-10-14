@@ -51,34 +51,7 @@ import { site } from "../site";
               >See how the arrangement works.</a>
           </p>
         </div>
-        <div class="hero-media">
-          {
-            site.media.ownerPhoto ? (
-              <figure class="hero-portrait">
-                <>
-                  <img
-                    src={site.media.ownerPhoto}
-                    alt="Leo and his wife, pictured together"
-                    width="1048"
-                    height="838"
-                    fetchpriority="high"
-                  />
-                  <figcaption>
-                    <>
-                      <strong>A small company. A personal approach.</strong>
-                      <span>Meet Leo, the person behind We Pay Probate.</span>
-                      <a href="#meet-leo">
-                        Get to know the business <Icon name="arrow" size={17} />
-                      </a>
-                    </>
-                  </figcaption>
-                </>
-              </figure>
-            ) : (
-              <HeroArt />
-            )
-          }
-        </div>
+        <div class="hero-media"><HeroArt /></div>
       </div>
     </section>
 

@@ -4,11 +4,11 @@ The user supplied Leo’s identity, described the business as a small company, a
 
 ## Current assets
 
-The user committed the exact portrait to GitHub. It is now stored unchanged at public/media/leo-and-wife.jpg and used in the hero, owner introduction, and video poster. The user supplied https://www.youtube.com/watch?v=dl4XQYkOdMQ. The page now offers the first 45 seconds as a click-to-load embedded segment. YouTube access is blocked in the cloud machine, so source footage and actual YouTube playback remain unreviewed here. This is a short playable segment, not a new edited MP4.
+The user committed the exact portrait to GitHub. It is now stored unchanged at public/media/leo-and-wife.jpg and used only in the owner introduction. The hero uses the house illustration, and the video poster uses the official YouTube thumbnail at https://i.ytimg.com/vi/dl4XQYkOdMQ/hqdefault.jpg. The user supplied https://www.youtube.com/watch?v=dl4XQYkOdMQ. The page now offers the first 45 seconds as a click-to-load embedded segment. YouTube access is blocked in the cloud machine, so source footage and actual YouTube playback remain unreviewed here. This is a short playable segment, not a new edited MP4.
 
 Set actual paths in src/site.ts under site.media:
 
-- ownerPhoto: a local public asset path, such as /media/leo-and-wife.webp. The hero and owner section use the same real photo.
+- ownerPhoto: a local public asset path, such as /media/leo-and-wife.webp. Only the owner section uses the real photo.
 - introVideo.src: a local MP4 path for a genuinely edited clip; keep youtubeId null.
 - introVideo.poster: a real video still or other approved poster image.
 - introVideo.captions: accurate English WebVTT captions for the actual clip.
